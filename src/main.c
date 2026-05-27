@@ -6,13 +6,7 @@
 #define TIMER_HZ 60.0
 #define TIMER_INTERVAL (1.0 / TIMER_HZ) // ≈ 0.01667 секунды
 
-int min(int a, int b) {
-    if (a < b)
-        return a;
-    return b;
-}
-
-int max(int a, int b) {
+int max_val(int a, int b) {
     if (a > b)
         return a;
     return b;
@@ -158,14 +152,14 @@ int main() {
                     game_select_window_start = selected_game_index;
                     game_select_window_end = selected_game_index + 4;
                 } else if (selected_game_index >= game_select_window_end) {
-                    game_select_window_start = max(selected_game_index - 3, 0);
+                    game_select_window_start = max_val(selected_game_index - 3, 0);
                     game_select_window_end = selected_game_index + 1;
                 }
             }
             if (IsKeyPressed(KEY_DOWN)) {
                 selected_game_index = (selected_game_index + 1) % games_count;
                 if (selected_game_index >= game_select_window_end) {
-                    game_select_window_start = max(selected_game_index - 3, 0);
+                    game_select_window_start = max_val(selected_game_index - 3, 0);
                     game_select_window_end = selected_game_index + 1;
                 } else if (selected_game_index < game_select_window_start) {
                     game_select_window_start = selected_game_index;
