@@ -14,11 +14,11 @@ game_data = {
 games_data = []
 
 def main():
-    with open('roms.h', 'w') as out_file:
+    with open('../src/roms.h', 'w') as out_file:
         out_file.write('#ifndef __ROMS_H__\n#define __ROMS_H__\n\n')
-        for file in os.listdir('./games'):
+        for file in os.listdir('../games'):
             if file[-4:] == '.ch8':
-                with open('./games/{}'.format(file), 'rb') as f:
+                with open('../games/{}'.format(file), 'rb') as f:
                     data = f.read()
                     if(len(data) >= 4096 - 200):
                         continue
