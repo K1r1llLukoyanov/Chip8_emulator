@@ -31,3 +31,12 @@ target_link_libraries(chip8_emulator PRIVATE raylib)
 if(WIN32)
     set_target_properties(chip8_emulator PROPERTIES LINK_FLAGS "-mwindows")
 endif()
+
+if(EMSCRIPTEN)
+    set_target_properties(chip8_emulator PROPERTIES SUFFIX ".html")
+    target_link_options(chip8_emulator PRIVATE
+        "-sUSE_GLFW=3"
+        "--preload-file" "${CMAKE_CURRENT_SOURCE_DIR}/assets@assets"
+        "-sALLOW_MEMORY_GROWTH=1"
+    )
+endif()

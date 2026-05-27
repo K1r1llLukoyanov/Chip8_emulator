@@ -3,17 +3,36 @@ This is Chip8 emulator written in C using raylib. It has some preinstalled games
 To add new games you need to add it into games folder. Then run tools/compress.py to create new c roms header file "roms.h".
 After generating new roms.h you need to execute
 ```bash
-    ./build/make
+./build/make
 ```
 
 ## Building
 
+### For Desktop (Linux, macOS, Windows)
+
 ```bash
-mkdir build
-cd build
-cmake ..
-cmake --build .
+cmake -B build -S .
+cmake --build build
 ```
+
+### For Web (WebAssembly / Browser)
+
+To compile the project for WebAssembly, you need to have the [Emscripten SDK](https://emscripten.org/) installed and activated.
+
+1. **Configure and Build**:
+   ```bash
+   emcmake cmake -B build-web -S . -DPLATFORM=Web
+   cmake --build build-web
+   ```
+
+2. **Run Local Server**:
+   Since WebAssembly pages require a local server to load assets and files safely, start a local HTTP server:
+   ```bash
+   python3 -m http.server --directory build-web 8080
+   ```
+
+3. **Open in Browser**:
+   Navigate to **[http://localhost:8080/chip8_emulator.html](http://localhost:8080/chip8_emulator.html)** in your web browser.
 
 ## Running
 
