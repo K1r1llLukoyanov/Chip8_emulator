@@ -55,6 +55,9 @@ int main() {
     InitAudioDevice();
 
     Sound beep = LoadSound("assets/sounds/beep.wav");
+    Image icon = LoadImage("assets/icon/eight.png");
+    SetWindowIcon(icon);
+
     init_chip8(&state);
 
     SetTargetFPS(60);
@@ -152,14 +155,16 @@ int main() {
                     game_select_window_start = selected_game_index;
                     game_select_window_end = selected_game_index + 4;
                 } else if (selected_game_index >= game_select_window_end) {
-                    game_select_window_start = max_val(selected_game_index - 3, 0);
+                    game_select_window_start =
+                        max_val(selected_game_index - 3, 0);
                     game_select_window_end = selected_game_index + 1;
                 }
             }
             if (IsKeyPressed(KEY_DOWN)) {
                 selected_game_index = (selected_game_index + 1) % games_count;
                 if (selected_game_index >= game_select_window_end) {
-                    game_select_window_start = max_val(selected_game_index - 3, 0);
+                    game_select_window_start =
+                        max_val(selected_game_index - 3, 0);
                     game_select_window_end = selected_game_index + 1;
                 } else if (selected_game_index < game_select_window_start) {
                     game_select_window_start = selected_game_index;
@@ -216,6 +221,7 @@ int main() {
     }
 
     UnloadSound(beep);
+    UnloadImage(icon);
     CloseAudioDevice();
     CloseWindow();
 
