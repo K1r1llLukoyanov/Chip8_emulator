@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 
+# Fix for CMake 4.0+ where compatibility with CMake < 3.5 is removed
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+
 project(CHIP8_emulator C)
 
 set(CMAKE_C_STANDARD 11)
